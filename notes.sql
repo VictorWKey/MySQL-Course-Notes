@@ -89,3 +89,30 @@ create table usuarios(
     id integer,
     primary key(id)
 );
+
+create table libros (
+    id int auto_increment not null, -- Auto incrementa
+    titulo varchar(40) not null, -- Nunca puede ser null
+    autor varchar(30) null, -- Es el valor por defecto, si no trae nada, por defecto es null,
+    primary key (id)
+);
+
+create table libros (
+    id int unsigned auto_increment not null primary key, -- Otra forma de poner el primary key
+    autor varchar(50) not null,
+    titulo varchar(50) not null,
+    precio int unsigned, -- unsigned permite que la propiedad no pueda tener un valor negativo, solo pueden ser numeros, y en caso de que pongamos un negativo tirara un error
+    cantidad int unsigned
+);
+
+-- Operadores logicos
+select * from libros where id > 2 and id > 5; -- Solo seleccionara los que  cumplan con las dos condiciones
+select * from libros where id > 2 or id > 5; -- Al menos debe cumplirse una condicion, pero si se cumplen las dos, ejecuta las dos
+select * from libros where id > 2 xor titulo = "Creativo"; -- Solo ejecutara una y sera la que si se cumpla, si se cumplen las dos, solo ejecutara la primera
+select * from libros where not(titulo = "Creativo"); -- Seleccionara a todos, excepto a los que cumplan con la condicion, ojo que el not lleva parentesis ()
+
+-- Order by
+select * from libros order by price; -- Valor por defecto: asc
+select * from libros order by titulo desc; -- Ordena de mayor a menor
+select * from libros order by cantidad asc; -- Equivale a lo primero 
+select * from libros order by titulo desc, cantidad asc; -- Aqui lo que hace es primero ordenar con base a la primera indicacion, luego, cuando ya esten ordenados, si hay registros con el mismo valor, agarra ese grupo de registros con esa propiedad en comun igual y lo que hace es ordenar ese grupito con base a su cantidad de menor a mayor (asc)
