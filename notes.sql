@@ -116,3 +116,17 @@ select * from libros order by price; -- Valor por defecto: asc
 select * from libros order by titulo desc; -- Ordena de mayor a menor
 select * from libros order by cantidad asc; -- Equivale a lo primero 
 select * from libros order by titulo desc, cantidad asc; -- Aqui lo que hace es primero ordenar con base a la primera indicacion, luego, cuando ya esten ordenados, si hay registros con el mismo valor, agarra ese grupo de registros con esa propiedad en comun igual y lo que hace es ordenar ese grupito con base a su cantidad de menor a mayor (asc)
+
+-- Like, not like
+SELECT * FROM libros where titulo like "%Crea%"; -- Seleccionara los que que en el titulo contengan esa cadena de caracteres dentro de su valor
+SELECT * FROM libros where titulo like "Creativo"; -- Seleccionara los que que en el titulo tengan ese valor como valor total
+SELECT * FROM libros where titulo like "Crea%"; -- Seleccionara los que que en el titulo empiecen con esa cadena de caracteres
+SELECT * FROM libros where titulo like "%tivo"; -- Seleccionara los que que en el titulo terminen con esa cadena de caracteres
+SELECT * FROM libros where titulo like "_______"; -- Seleccionara los que que en el titulo contengan la cantidad de caracteres igual a la cantidad de guiones
+SELECT * FROM libros where titulo like "C_e_____"; -- Seleccionara los que se tengan como valor exactamente esas letras y esa cantidad de caracteres y en esas posiciones
+-- Es lo mismo con not like, pero va a seleccionar los que no cumplan con la condicion
+
+-- In, between
+select * from libros where titulo in("Creativo", "Chistazos", "Humor nigga", "El libro que no existe", "Otro libro"); -- Va seleccionar los que tengan en esa propiedad un valor igual a cualquiera de los que estan dentro, si esta lo selecciona, si no existe, simplemente no lo selecciona porque no existe
+select * from libros where titulo between "C" and "hz"; -- Lo que va hacer internamente aqui es ordenar los titulos en orden alfabetico y va seleccionar los que se encuentren en ese rango. Lo que hace internamente es hacer como si esos valores estuvieran en la tabla en la columna "titulo" pero en realidad no lo estan pero si forman parte del ordenamiento en orden alfabetico. De hecho si los valores pasados son iguales a valores que si existen, si los seleccionara incluyendolos a ellos.
+select * from libros where precio between 200 and 300; -- Simplemente seleccionara los que tengan un precio dentro de ese rango
