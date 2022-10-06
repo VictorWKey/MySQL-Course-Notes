@@ -130,3 +130,12 @@ SELECT * FROM libros where titulo like "C_e_____"; -- Seleccionara los que se te
 select * from libros where titulo in("Creativo", "Chistazos", "Humor nigga", "El libro que no existe", "Otro libro"); -- Va seleccionar los que tengan en esa propiedad un valor igual a cualquiera de los que estan dentro, si esta lo selecciona, si no existe, simplemente no lo selecciona porque no existe
 select * from libros where titulo between "C" and "hz"; -- Lo que va hacer internamente aqui es ordenar los titulos en orden alfabetico y va seleccionar los que se encuentren en ese rango. Lo que hace internamente es hacer como si esos valores estuvieran en la tabla en la columna "titulo" pero en realidad no lo estan pero si forman parte del ordenamiento en orden alfabetico. De hecho si los valores pasados son iguales a valores que si existen, si los seleccionara incluyendolos a ellos.
 select * from libros where precio between 200 and 300; -- Simplemente seleccionara los que tengan un precio dentro de ese rango
+
+-- regexp
+select * from libros where titulo regexp "[bc]"; -- Seleccionara los que contengan algunas de esas letras
+select * from libros where titulo regexp "[b-d]"; -- Seleccionara los que contengan de una letra a la otra, tomando como base el abecedario
+select * from libros where titulo regexp "^Ch"; -- Seleccionara los que empiecen con esa cadena de caracteres despues del ^ (alt + 94)
+select * from libros where titulo regexp "gga$"; -- Seleccionara los que terminen con esa cadena de caracteres antes del $
+select * from libros where titulo regexp "C..a."; -- Seleccionara a los que contengan esa cadena de caracteres y los puntos significa que debe haber un caracter (el que sea) y en su respectiva posicion. Tambien podria decirse que seleccionara los que contengan esa cadena de caracteres con caracteres esplicitos e imaginarios
+select * from libros where titulo regexp "^C.e....o$"; -- Seleccionara los que tengan como valor total en su propiedad esa cadena de caracteres combinado con caracteres imaginarios.
+select * from libros where titulo regexp "o.*o.*o.*o.*u.*u.*u";  -- Es como la primera propiedad pero podemos decirle que solo seleccione los que contengan esas letras y que se repitan la cantidad de veces que lo indicamos
